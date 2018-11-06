@@ -1,40 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
 
-    <title>OTP-Semaphore</title>
-
-    <!-- Bootstrap core CSS -->
-	<link href="{{url_for('static', filename='dist/css/bootstrap.min.css')}}" rel="stylesheet"/>
-
-
-    <!-- Custom styles for this template -->
-	<link href="{{url_for('static', filename='signin.css')}}" rel="stylesheet"/>
-
-  </head>
-
-  <body>
-
+{% extends "signin_base.html" %}
+  {% block body %}
     <div class="container">
+      <form class="form-signin" method="post">
+		{{form.hidden_tag()}}
+        <h2 class="form-signin-heading">Sign Up</h2>
+		{{ form.email(class_="form-control")}}
+        {% for error in form.email.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
 
-      <form class="form-signin">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword_0" class="form-control" placeholder="Password" required>
-        <label for="inputPassword" class="sr-only">Password again</label>
-        <input type="password" id="inputPassword_1" class="form-control" placeholder="Password again" required>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+		{{ form.password_0(class_="form-control")}}
+        {% for error in form.password_0.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+
+		{{ form.password_1(class_="form-control")}}
+        {% for error in form.password_1.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+
+		{{form.submit(class_="btn btn-lg btn-primary btn-block")}}
       </form>
-
     </div> <!-- /container -->
-
-  </body>
-</html>
+  {% endblock %}
