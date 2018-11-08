@@ -6,17 +6,22 @@ class RDB():
         self.redis = Redis(host=host, port=port, decode_responses=True)
 
     def add_user(self, user):
+        self.redis.incrby('u_count',1)
         self.redis.sadd('users', user.email)
         h_obj = "user:"+user.email
         self.redis.hset(h_obj, 'email', user.email)
         self.redis.hset(h_obj, 'pswdh', user.password_hash)
+        self.redis.hset(h_obj, 'id', self.redis.get('u_count'))
 
-    def verify_user(self, user):
-        h_obj = "user:"+user.email
-        return user.check_password(self.redis.hget(h_obj, 'pswdh'))
-    
-    def is_existed_user(self, user):
-        return self.redis.sismember('users', user.email)
+    def is_existed_user(self, email):
+        return self.redis.sismember('users', email)
+
+    def query_user(self, email):
+        h_obj = "user:"+email
+        user = User(email)
+        user.set_pwdhash(self.redis.hget(h_obj, 'pswdh'))
+        user.set_id(self.redis.hget(h_obj, 'id'))
+        return user
 
     def debug(self):
         print(self.redis.keys())
