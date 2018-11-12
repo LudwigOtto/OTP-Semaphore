@@ -1,6 +1,5 @@
 from flask_mail import Message
 
-
 class FMSG():
     def __init__(self):
         self.msg = Message(sender=' ')
@@ -20,4 +19,9 @@ class FMSG():
     def send_code(self, code):
         self.msg.subject = "OTP-Semaphore: Identification Code"
         self.msg.body = "Hello, please enter the code: "+ code
+        return self.msg
+
+    def send_alert(self, current_time):
+        self.msg.subject = "OTP-Semaphore: Warning: Masquerader Detected"
+        self.msg.body = "Hello, we detect another login activity using invalid verification code at: "+ current_time
         return self.msg

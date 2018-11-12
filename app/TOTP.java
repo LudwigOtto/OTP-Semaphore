@@ -180,7 +180,7 @@
 		 long secondsSinceEpoch = calendar.getTimeInMillis() / 1000L;
 
          long T0 = 0;
-         long X = 30;
+         long X = 1;
 
          String steps = "0";
          String steps2 = "0";
