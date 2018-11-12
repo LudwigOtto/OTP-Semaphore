@@ -1,0 +1,15 @@
+{% extends "signin_base.html" %}
+  {% block body %}
+    <div class="container">
+      <form class="form-signin" method="post">
+		{{form.hidden_tag()}}
+        <h2 class="form-signin-heading">Verification</h2>
+		{{ form.code(class_="form-control")}}
+        {% for error in form.code.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+
+		{{form.submit(class_="btn btn-lg btn-primary btn-block")}}
+      </form>
+    </div> <!-- /container -->
+  {% endblock %}

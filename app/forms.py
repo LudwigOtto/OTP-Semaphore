@@ -16,3 +16,7 @@ class SignupForm(FlaskForm):
             validators=[DataRequired(), EqualTo('password_0')], render_kw={"placeholder": "Password again"})
     submit = SubmitField('Submit')
 
+class OathForm(FlaskForm):
+    code = StringField('Verify Code', validators=[DataRequired()], render_kw={"placeholder": "Verify Code"})
+    submit = SubmitField('Submit')
+
