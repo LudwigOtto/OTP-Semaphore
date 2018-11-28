@@ -50,7 +50,7 @@ $ source env/bin/activate
 #### Sign up with your mail account and try login and logout on multiple browsers simultaneously. TOTP code would be sent to your email account.
 
 ### Screenshot of application layout
-![Alt text](screenshot_1.png)
-![Alt text](screenshot_2.png)
+![Alt text](Screenshot_1.png)
+![Alt text](Screenshot_2.png)
 
 Please drop mail to ykao@cs.stonybrook.edu, thanks.
